@@ -6,6 +6,8 @@ import lombok.Data;
 import org.smaszno.payu.serializers.ProductListingDateDeserializer;
 import org.smaszno.payu.serializers.ProductListingDateSerializer;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -34,6 +36,7 @@ public class Product {
         product.name = name;
         product.unitPrice = unitPrice;
         product.quantity = quantity;
+        product.listingDate = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
         return product;
     }
 

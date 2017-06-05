@@ -1,11 +1,14 @@
 package org.smaszno.payu;
 
-import org.smaszno.payu.model.AuthToken;
+import org.smaszno.payu.model.AuthTokenResponse;
 import org.smaszno.payu.model.Order;
 import org.smaszno.payu.model.OrderResponse;
+import org.smaszno.payu.services.PayUAuthorize;
+import org.smaszno.payu.services.PayUCreateOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,35 +19,29 @@ import java.net.URI;
  * Created by smaszno on 04/06/2017.
  */
 @SpringBootApplication
-public class PayUOrderClient {
+public class PayUOrderClient implements CommandLineRunner {
 
 
-    private static void placeOrderForShop(Order order, AuthToken authToken, String url) throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add(HttpHeaders.AUTHORIZATION, authToken.toString());
-        RequestEntity<Order> requestEntity = new RequestEntity<>(order, headers, HttpMethod.POST, URI.create(url), Order.class);
 
-        ResponseEntity<OrderResponse> response  = restTemplate.postForEntity(URI.create(url), requestEntity, OrderResponse.class);
+    PayUAuthorize payUAuthorize;
+    PayUCreateOrder payUCreateOrder;
 
-
-        HttpStatus responseStatusCode = response.getStatusCode();
+    @Autowired
+    public PayUOrderClient(PayUAuthorize payUAuthorize, PayUCreateOrder payUCreateOrder) {
+        this.payUAuthorize = payUAuthorize;
+        this.payUCreateOrder = payUCreateOrder;
     }
 
-
+    @Override
+    public void run(String... strings) throws Exception {
+        AuthTokenResponse resp = payUAuthorize.authorize();
+        if (resp != null && resp.getAccessToken() != null)
+            payUCreateOrder.createOrder(resp, Order.generateMock());
+    }
 
     public static void main(String []args)
     {
         SpringApplication.run(PayUOrderClient.class, args);
-
-        try {
-            placeOrderForShop(Order.generateMock(), AuthToken.generateMock(), "https://secure.payu.com/api/v2_1/orders/");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
 
