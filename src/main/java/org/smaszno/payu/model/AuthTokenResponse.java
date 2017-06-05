@@ -33,11 +33,5 @@ public class AuthTokenResponse {
         return tokenType + " "+ accessToken;
     }
 
-    public static AuthTokenResponse generateMock()
-    {
-        AuthTokenResponse at = new AuthTokenResponse();
-        at.tokenType = "bearer";
-        at.accessToken = "3e5cac39-7e38-4139-8fd6-30adc06a61bd";
-        return at;
-    }
+
 }

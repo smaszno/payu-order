@@ -51,6 +51,10 @@ public class PayUAuthorize {
     }
 
 
+    public String getClientId()
+    {
+        return formParamsCache.get(FormParam.CLIENT_ID);
+    }
 
 
 }

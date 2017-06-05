@@ -30,14 +30,5 @@ public class Product {
     Date listingDate;
 
 
-    public static Product generateMock(String name, Integer unitPrice, Integer quantity)
-    {
-        Product product = new Product();
-        product.name = name;
-        product.unitPrice = unitPrice;
-        product.quantity = quantity;
-        product.listingDate = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
-        return product;
-    }
 
 }

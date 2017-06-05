@@ -15,13 +15,13 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @PropertySource("file:conf/payu-order.properties")
-public class AppConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
+public class AppConfigTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppConfigTest.class);
 
 
 
 
-    public AppConfig() {
+    public AppConfigTest() {
         LOGGER.info("init");
 
     }
