@@ -4,11 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.smaszno.payu.config.AppConfigTest;
+import org.smaszno.payu.controllers.PayUOrderClient;
 import org.smaszno.payu.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Created by smaszno on 2017-06-05.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {AppConfigTest.class, PayUOrderClient.class})
+@Import({AppConfigTest.class, PayUOrderClient.class})
 public class PayUOrderClientTest {
 
     @Autowired

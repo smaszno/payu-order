@@ -1,22 +1,14 @@
-package org.smaszno.payu;
+package org.smaszno.payu.controllers;
 
 import org.smaszno.payu.model.AuthTokenResponse;
 import org.smaszno.payu.model.Order;
 import org.smaszno.payu.model.OrderResponse;
 import org.smaszno.payu.services.PayUAuthorize;
 import org.smaszno.payu.services.PayUCreateOrder;
+import org.smaszno.payu.services.impl.PayUAuthorizeImpl;
+import org.smaszno.payu.services.impl.PayUCreateOrderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.net.URI;
 
 /**
  * Created by smaszno on 04/06/2017.
@@ -25,15 +17,11 @@ import java.net.URI;
 public class PayUOrderClient  {
 
 
-
+    @Autowired
     PayUAuthorize payUAuthorize;
+    @Autowired
     PayUCreateOrder payUCreateOrder;
 
-    @Autowired
-    public PayUOrderClient(PayUAuthorize payUAuthorize, PayUCreateOrder payUCreateOrder) {
-        this.payUAuthorize = payUAuthorize;
-        this.payUCreateOrder = payUCreateOrder;
-    }
 
     public AuthTokenResponse authorize()
     {
