@@ -6,8 +6,6 @@ import lombok.Data;
 import org.smaszno.payu.serializers.ProductListingDateDeserializer;
 import org.smaszno.payu.serializers.ProductListingDateSerializer;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 
 /**

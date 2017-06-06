@@ -4,7 +4,7 @@ import org.smaszno.payu.model.AuthTokenResponse;
 import org.smaszno.payu.services.PayUAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;

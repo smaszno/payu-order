@@ -1,5 +1,6 @@
 package org.smaszno.payu;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by smaszno on 2017-06-05.
@@ -32,17 +33,17 @@ public class PayUOrderClientTest {
     @Test
     public void authorize() throws Exception {
         AuthTokenResponse authTokenResponse = payUOrderClient.authorize();
-        assertTrue("authorize: access token should not be empty", authTokenResponse.getAccessToken() != null);
-        assertTrue("authorize: token type should not be empty", authTokenResponse.getTokenType() != null);
+        Assert.assertTrue("authorize: access token should not be empty", authTokenResponse.getAccessToken() != null);
+        Assert.assertTrue("authorize: token type should not be empty", authTokenResponse.getTokenType() != null);
     }
 
     private void checkOrderResponse(OrderResponse orderResponse)
     {
-        assertTrue("order: status should not be empty", orderResponse.getStatus() != null);
-        assertTrue("order: redirectUri should not be empty", orderResponse.getRedirectUri() != null);
-        assertTrue("order: orderId should not be empty", orderResponse.getOrderId() != null);
+        Assert.assertTrue("order: status should not be empty", orderResponse.getStatus() != null);
+        Assert.assertTrue("order: redirectUri should not be empty", orderResponse.getRedirectUri() != null);
+        Assert.assertTrue("order: orderId should not be empty", orderResponse.getOrderId() != null);
         OrderResponseStatus status = orderResponse.getStatus();
-        assertEquals("order: status code should be equal to SUCCESS", status.getStatusCode(), "SUCCESS");
+        Assert.assertEquals("order: status code should be equal to SUCCESS", status.getStatusCode(), "SUCCESS");
 
     }
 

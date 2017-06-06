@@ -5,8 +5,6 @@ import org.smaszno.payu.model.Order;
 import org.smaszno.payu.model.OrderResponse;
 import org.smaszno.payu.services.PayUAuthorize;
 import org.smaszno.payu.services.PayUCreateOrder;
-import org.smaszno.payu.services.impl.PayUAuthorizeImpl;
-import org.smaszno.payu.services.impl.PayUCreateOrderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
